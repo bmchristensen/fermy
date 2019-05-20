@@ -27,9 +27,8 @@ RSpec.describe Project do
   end
 
   describe 'performs big dependency' do
-    let(:project) { Project.new }
-    let(:stubbed_project) { Project.new }
-    # let(:ingredient) { FactoryBot.build_stubbed(:ingredient, name: 'fake_ingredient') }
+    let(:project) { Project.new(name: 'Fake Project') }
+    let(:stubbed_project) { Project.new(name: 'Fake Project Stub') }
 
     # it 'performs slowly' do
     #   expect(project.perform(BigDependency.new)).to eq('arbitrary value')
@@ -46,8 +45,14 @@ RSpec.describe Project do
     end
 
     it 'works with a partial stub' do
-      allow(:stubbed_project).to receive(:perform).and_return('arbitrary value')
-      # expect(:stubbed_project.perform(BigDependency.new)).to eq('arbitrary value')
+      allow(stubbed_project).to receive(:perform).and_return('arbitrary value')
+      expect(stubbed_project.perform(BigDependency.new)).to eq('arbitrary value')
+    end
+
+    it 'works with a mock' do
+      mock_project = Project.new(name: 'Fake Project Mock')
+      expect(mock_project).to receive(:perform).and_return('arbitrary value')
+      expect(mock_project.perform(BigDependency.new)).to eq('arbitrary value')
     end
   end
 end
