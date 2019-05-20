@@ -48,5 +48,11 @@ RSpec.describe Project do
       allow(stubbed_project).to receive(:perform).and_return('arbitrary value')
       expect(stubbed_project.perform(BigDependency.new)).to eq('arbitrary value')
     end
+
+    it 'works with a mock' do
+      mock_project = Project.new(name: 'Fake Project Mock')
+      expect(mock_project).to receive(:perform).and_return('arbitrary value')
+      expect(mock_project.perform(BigDependency.new)).to eq('arbitrary value')
+    end
   end
 end
