@@ -27,8 +27,8 @@ RSpec.describe Project do
   end
 
   describe 'performs big dependency' do
-    let(:project) { Project.new(name: 'fake_project') }
-    let(:stubbed_project) { Project.new(name: 'fake_project_stub') }
+    let(:project) { Project.new(name: 'Fake Project') }
+    let(:stubbed_project) { Project.new(name: 'Fake Project Stub') }
 
     # it 'performs slowly' do
     #   expect(project.perform(BigDependency.new)).to eq('arbitrary value')
